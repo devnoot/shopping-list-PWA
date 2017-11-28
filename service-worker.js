@@ -1,12 +1,12 @@
 var dataCacheName = 'shoppingData-v1.0.0';
 var cacheName = 'shopping-v1.0.0';
 var filesToCache = [
-    '/shopping/',
-    '/shopping/index.html',
-    '/shopping/shopping_list.js',
-    '/shopping/materialize/js/jquery.min.js',
-    '/shopping/materialize/js/materialize.min.js',
-    '/shopping/materialize/css/materialize.min.css'
+    '/',
+    'index.html',
+    'shopping_list.js',
+    'materialize/js/jquery.min.js',
+    'materialize/js/materialize.min.js',
+    'materialize/css/materialize.min.css'
 ];
 
 self.addEventListener('install', function(e) {
