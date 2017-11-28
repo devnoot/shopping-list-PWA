@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.margin-0 {
+    margin: 0;
+}
+.loader {
+    position: absolute;
+    top :0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+.hidden {
+    display: none;
+}
+.product-name {
+    color: #000;
+}
+.product-label {
+    width: 100%;
+}
+.btn-block {
+    width: 100%;
+}
+nav {
+    margin-bottom: 20px;
+}
+
+#butMenu {
+    position: fixed;
+    top: 32px;
+    right: 8px;
+    z-index: 100;
+}
+
+.edit-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

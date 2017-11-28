@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- SEO -->
+        <meta charset="utf-8">
+        <title>Shopping list | LAB</title>
+        <meta name='description' content="A simple shopping list app">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- windowns phone -->
+        <meta name="application-name" content="Shopping list">
+        <meta name="msapplication-TileColor" content="#467ddb">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <!-- favicon -->
+        <link rel="icon" type="image/x-icon" href="/shopping/icons/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="/shopping/icons/apple-touch-icon.png?v=vMr0RXM5mN">
+        <link rel="icon" type="image/png" sizes="32x32" href="/shopping/icons/favicon-32x32.png?v=vMr0RXM5mN">
+        <link rel="icon" type="image/png" sizes="16x16" href="/shopping/icons/favicon-16x16.png?v=vMr0RXM5mN">
+        <link rel="manifest" href="/shopping/manifest.json?v=vMr0RXM5mN">
+        <link rel="mask-icon" href="/shopping/icons/safari-pinned-tab.svg?v=vMr0RXM5mN" color="#2b5797">
+        <link rel="shortcut icon" href="/shopping/icons/favicon.ico?v=vMr0RXM5mN">
+        <meta name="apple-mobile-web-app-title" content="Shopping list | LAB">
+        <meta name="application-name" content="Shopping list">
+        <meta name="theme-color" content="#69add4">
+
+        <link rel="stylesheet" type="text/css" href="materialize/css/materialize.min.css">
+        <!-- not minified version css/style.css -->
+        <style>.margin-0,body{margin:0}body{padding:0}.loader{position:absolute;top:0;left:0;right:0;bottom:0;margin:auto}.hidden{display:none}.product-name{color:#000}.btn-block,.product-label{width:100%}nav{margin-bottom:20px}#butMenu{position:fixed;top:32px;right:8px;z-index:100}.edit-menu{position:absolute;top:0;left:0}</style>
+    </head>
+    <body>
+        <nav class="blue darken-2">
+            <div class="nav-wrapper container">
+                <a href="#" class="brand-logo center">Shopping</a>
+                <ul class="left">
+                    <li><a id="butRemoveShop" href="#!"><i class="material-icons">remove_shopping_cart</i></a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <nav class="edit-menu blue hidden">
+            <div class="nav-wrapper">
+                <ul class="left">
+                    <li><a id="butRemoveProducts" class="waves-effect waves-light" href="#!"><i class="material-icons">delete_forever</i></a></li>
+                    <li><a id="butEditProduct" class="waves-effect waves-light" href="#!"><i class="material-icons">edit</i></a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <ul id="slide-out" class="side-nav">
+            <li><div class="user-view">
+                <div class="background">
+                    <img src="images/office.jpg" alt="Menu background">
+                </div>
+                <img class="circle" src="icons/android-chrome-256x256.png" alt="Application logo">
+                <a href="#"><span class="white-text name">Shopping list app</span></a>
+                <a href="#"><span class="white-text email">by Learn and Believe</span></a>
+            </div></li>
+        </ul>
+
+        <div class="main hidden">
+            <div class="container">
+                
+                <ul class="collapsible popout shop-list" data-collapsible="accordion">
+
+                    <li class="shop-item-template hidden">
+                        <div class="collapsible-header">
+                            <i class="material-icons">expand_more</i>
+                            <span class="shop-name"></span>
+                            <span class="badge"></span></div>
+                        <div class="collapsible-body">
+                            <ul class="collection with-header product-list">
+                                <li class="collection-item modal-trigger product-add teal lighten-1 white-text" data-target="add-modal"><div>Add Product<a href="#!" class="secondary-content"><i class="material-icons white-text">add</i></a></div></li>
+                                <li class="collection-item product-item-template hidden">
+                                    <div class="truncate">
+                                        <p class="margin-0">
+                                            <input class="product-id" type="checkbox">
+                                            <label class="product-label"><span class="product-name"></span></label>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <a id="butAddShop" class="waves-effect waves-light btn-large center-align btn-block modal-trigger" data-target="add-modal"><i class="material-icons">add_shopping_cart</i></a>
+
+            </div>
+        </div>
+
+        <a id="butMenu" class="waves-effect waves-light btn btn-floating button-collapse" data-activates="slide-out"><i class="material-icons">settings</i></a>
+
+        <!-- Add Modal  -->
+        <div id="add-modal" class="modal">
+            <div class="modal-content">
+                <h4 id="modal-title"></h4>
+                <div class="input-field col s6">
+                    <input id="modal-id" type="hidden">
+                    <input id="name" type="text" class="validate">
+                    <label for="name">Name</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="butAdd" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Add</a>
+            </div>
+        </div>
+
+        <div class="preloader-wrapper big active loader">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+        </div>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="materialize/js/jquery.min.js"></script>
+        <script src="materialize/js/materialize.min.js"></script>
+        <script type="application/javascript" src="shopping_list.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('.modal').modal({
+                    ready: function(modal, trigger) {
+                        if(trigger[0].id === "butAddShop") {
+
+                            $('#modal-title').text("Shop");
+
+                        } else {
+
+                            $('#modal-title').text("Product");
+                            $('#modal-id').val( trigger[0].dataset.shopId );
+
+                        }
+                    },
+                    complete: function() {
+                        $('#modal-title').text("");
+                        $('#modal-id').val("");
+                    }
+                });
+                $(".button-collapse").sideNav();
+            });
+        </script>
+    </body>
+</html>
