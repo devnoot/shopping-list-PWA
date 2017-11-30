@@ -21,12 +21,8 @@
      * Event listeners for UI elements
      *
      ****************************************************************************/
-    document.getElementById('butAdd').addEventListener('click', function() {
-        app.addProductOrShop();
-    });
-
-    document.getElementById('butEditProduct').addEventListener('click', function() {
-        app.editProduct();
+    document.getElementById('butSubmit').addEventListener('click', function() {
+        app.submitModalData();
     });
 
     document.getElementById('butRemoveProducts').addEventListener('click', function() {
@@ -43,19 +39,21 @@
      *
      ****************************************************************************/
 
-    app.addProductOrShop = function() {
+    app.submitModalData = function() {
         var shopId    = app.addModal.querySelector('#modal-id').value,
+            productId = app.addModal.querySelector('#modal-product-id').value,
             nameInput = app.addModal.querySelector('#name'),
             name      = nameInput.value;
 
 
         if(shopId === "") {
             app.addShop(name);
-        } else {
+        } else if (productId === "") {
             app.addProduct(name, shopId);
+        } else {
+          app.editProduct(name, shopId, productId);
         }
-
-        nameInput.value = "";
+        
         Materialize.updateTextFields();
     };
 
@@ -238,8 +236,10 @@
         app.saveShoppingList();
     };
 
-    app.editProduct = function() {
-        //TO DO
+    app.editProduct = function(name, shopId, productId) {
+        app.shops[ shopId ].products[productId] = name;
+
+        app.updateProductList(shopId);
 
         app.saveShoppingList();
     };

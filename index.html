@@ -41,7 +41,7 @@
             <div class="nav-wrapper">
                 <ul class="left">
                     <li><a id="butRemoveProducts" class="waves-effect waves-light" href="#!"><i class="material-icons">delete_forever</i></a></li>
-                    <li><a id="butEditProduct" class="waves-effect waves-light" href="#!"><i class="material-icons">edit</i></a></li>
+                    <li><a id="butEditProduct" class="waves-effect waves-light modal-trigger" href="#add-modal"><i class="material-icons">edit</i></a></li>
                 </ul>
             </div>
         </nav>
@@ -97,12 +97,13 @@
                 <h4 id="modal-title"></h4>
                 <div class="input-field col s6">
                     <input id="modal-id" type="hidden">
+                    <input id="modal-product-id" type="hidden">
                     <input id="name" type="text" class="validate">
                     <label for="name">Name</label>
                 </div>
             </div>
             <div class="modal-footer">
-                <a id="butAdd" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Add</a>
+                <a id="butSubmit" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Submit</a>
             </div>
         </div>
 
@@ -131,6 +132,18 @@
 
                             $('#modal-title').text("Shop");
 
+                        } else if(trigger[0].id === "butEditProduct") {
+
+                            var checkedElementId = $('li.active .product-list input[type="checkbox"]:checked').attr('id');
+                            var labelElementName = $('label[for="'+checkedElementId+'"]')[0].innerText;
+
+                            $('label[for="name"]').addClass("active");
+
+                            $('#name').val( labelElementName );
+                            $('#modal-title').text("Product");
+                            $('#modal-id').val( $('li.active').data( "id" ) );
+                            $('#modal-product-id').val( checkedElementId.split('-')[1] );
+
                         } else {
 
                             $('#modal-title').text("Product");
@@ -140,7 +153,10 @@
                     },
                     complete: function() {
                         $('#modal-title').text("");
+                        $('#name').val("");
                         $('#modal-id').val("");
+                        $('#modal-product-id').val("");
+                        Materialize.updateTextFields();
                     }
                 });
                 $(".button-collapse").sideNav();
